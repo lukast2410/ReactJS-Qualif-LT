@@ -30,8 +30,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	const { data } = await client.query({
 		query: gql`
-			query GetLaunchById {
-				launch(id: "${id}") {
+			query GetLaunchById($id: String) {
+				launch(id: $id) {
           id
           mission_name
           details
@@ -60,6 +60,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         }
 			}
 		`,
+    variables: {
+      id: id
+    }
 	})
 
   if(!data || !data.launch){

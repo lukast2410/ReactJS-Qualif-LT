@@ -24,10 +24,8 @@ export default function Search({ launches }) {
 		setLoading(true)
 		const { data } = await client.query({
 			query: gql`
-				query GetLaunches {
-					launchesPastResult(limit: ${12}, offset: ${start}, find: {
-            mission_name: "${search}"
-          }) {
+				query GetLaunches($limit: Int, $start: Int, $search: String) {
+					launchesPastResult(limit: $limit, offset: $start, find: { mission_name: $search }) {
 						result {
 							totalCount
 						}
@@ -44,6 +42,11 @@ export default function Search({ launches }) {
 					}
 				}
 			`,
+			variables: {
+				limit: 12,
+				start: start,
+				search: search,
+			},
 		})
 		const result = data.launchesPastResult.data
 		setLoading(false)
@@ -56,7 +59,7 @@ export default function Search({ launches }) {
 			<div className='max-w-screen-xl px-5 py-5 bg-black text-white mx-auto'>
 				<h1 className='text-lg text-left font-bold'>You search for "{search}"</h1>
 				{listLaunch.length == 0 ? (
-					<NotFound title='Not Found' detail='Please try another keyword.'/>
+					<NotFound title='Not Found' detail='Please try another keyword.' />
 				) : (
 					<>
 						<div className='mt-3 mx-auto grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-w-none'>
@@ -91,26 +94,29 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	const { data } = await client.query({
 		query: gql`
-      query GetLaunches {
-        launchesPastResult(limit: ${12}, offset: 0, find: {
-          mission_name: "${search}"
-        }) {
-          result {
-            totalCount
-          }
-          data {
-            id
-            details
-            mission_name
-            links {
-              flickr_images
-            }
-            launch_success
-            launch_date_utc
-          }
-        }
-      }
-    `,
+			query GetLaunches($limit: Int, $start: Int, $search: String) {
+				launchesPastResult(limit: $limit, offset: $start, find: { mission_name: $search }) {
+					result {
+						totalCount
+					}
+					data {
+						id
+						details
+						mission_name
+						links {
+							flickr_images
+						}
+						launch_success
+						launch_date_utc
+					}
+				}
+			}
+		`,
+		variables: {
+			limit: 12,
+			start: 0,
+			search: search,
+		},
 	})
 
 	return {
