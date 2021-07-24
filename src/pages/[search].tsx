@@ -57,7 +57,7 @@ export default function Search({ launches }) {
 	return (
 		<Layout title='SpaceLT'>
 			<div className='max-w-screen-xl px-5 py-5 bg-black text-white mx-auto'>
-				<h1 className='text-lg text-left font-bold'>You search for "{search}"</h1>
+				<h1 className='text-lg text-left font-bold'>You search for &quot;{search}&quot;</h1>
 				{listLaunch.length == 0 ? (
 					<NotFound title='Not Found' detail='Please try another keyword.' />
 				) : (
@@ -94,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	const { data } = await client.query({
 		query: gql`
-			query GetLaunches($limit: Int, $start: Int, $search: String) {
+			query GetLaunches($limit: Int, $start: Int, $search: String!) {
 				launchesPastResult(limit: $limit, offset: $start, find: { mission_name: $search }) {
 					result {
 						totalCount

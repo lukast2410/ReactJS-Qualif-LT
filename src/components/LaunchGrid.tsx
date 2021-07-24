@@ -12,7 +12,7 @@ export default function LaunchGrid({ launch }) {
 	return (
 		<div className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
 			<div className='flex-shrink-0 bg-gray-400'>
-				<Image
+				<img
 					className={`h-48 w-full ${
 						launch.links.flickr_images.length == 0 ? 'object-scale-down' : 'object-cover'
 					}`}

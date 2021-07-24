@@ -100,9 +100,38 @@ export default function Home({ launches }) {
 		</Layout>
 	)
 }
+// export const getServerSideProps: GetServerSideProps = async () => {
+// 	const { data } = await client.query({
+// 		query: gql`
+// 			query GetLaunches {
+// 				launchesPastResult(limit: 12, offset: 0) {
+// 					result {
+// 						totalCount
+// 					}
+// 					data {
+// 						id
+// 						details
+// 						mission_name
+// 						links {
+// 							flickr_images
+// 						}
+// 						launch_success
+// 						launch_date_utc
+// 					}
+// 				}
+// 			}
+// 		`,
+// 	})
+
+// 	return {
+// 		props: {
+// 			launches: data.launchesPastResult,
+// 		},
+// 	}
+// }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const { data } = await client.query({
+	const data = await client.query({
 		query: gql`
 			query GetLaunches {
 				launchesPastResult(limit: 12, offset: 0) {
@@ -122,8 +151,7 @@ export const getStaticProps: GetStaticProps = async () => {
 				}
 			}
 		`,
-	})
-	console.log(data)
+	}).then(res => res.data)
 
 	return {
 		props: {
