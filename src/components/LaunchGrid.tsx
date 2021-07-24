@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { CalendarIcon } from '@heroicons/react/outline'
 import { formatDate } from '../pages/api/helper'
+import Image from 'next/image'
 
 export default function LaunchGrid({ launch }) {
 	let detail = launch.details ? launch.details.substring(0, 75).trim() : null
@@ -11,7 +12,7 @@ export default function LaunchGrid({ launch }) {
 	return (
 		<div className='flex flex-col rounded-lg shadow-lg overflow-hidden'>
 			<div className='flex-shrink-0 bg-gray-400'>
-				<img
+				<Image
 					className={`h-48 w-full ${
 						launch.links.flickr_images.length == 0 ? 'object-scale-down' : 'object-cover'
 					}`}

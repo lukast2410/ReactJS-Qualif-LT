@@ -22,14 +22,14 @@ export default function Header() {
 								<div className='flex-shrink-0 hidden lg:flex lg:items-center'>
 									<Link href='/'>
 										<a>
-											<Image src={'/SpaceLT.png'} width={155} height={40} className='hidden lg:block' />
+											<Image src={'/SpaceLT.png'} width={155} height={40} className='hidden lg:block' alt='Not Found'/>
 										</a>
 									</Link>
 								</div>
 								<div className='flex-shrink-0 flex items-center lg:hidden'>
 									<Link href='/'>
 										<a>
-											<Image src={'/SpaceLT-logo.png'} width={40} height={40} className='block lg:hidden' />
+											<Image src={'/SpaceLT-logo.png'} width={40} height={40} className='block lg:hidden' alt='Not Found'/>
 										</a>
 									</Link>
 								</div>

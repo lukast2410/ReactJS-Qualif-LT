@@ -4,7 +4,7 @@ import LaunchGrid from '../components/LaunchGrid'
 import Layout from '../components/Layout'
 import NotFound from '../components/NotFound'
 
-export default function favorites() {
+export default function Favorites() {
 	const [listFavorite, setListFavorite] = useState([])
 
 	useEffect(() => {

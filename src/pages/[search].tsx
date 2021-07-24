@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import NotFound from '../components/NotFound'
 
-export default function Home({ launches }) {
+export default function Search({ launches }) {
 	const router = useRouter()
 	const search = router.query.search
 	const [listLaunch, setListLaunch] = useState(launches.data)

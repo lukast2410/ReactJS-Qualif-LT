@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { useState } from 'react'
 import ReactPlayer from 'react-player'
 import client from '../../apollo-client'
@@ -101,7 +101,7 @@ export default function Home({ launches }) {
 	)
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 	const { data } = await client.query({
 		query: gql`
 			query GetLaunches {

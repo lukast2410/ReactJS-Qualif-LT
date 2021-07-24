@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 import LaunchDetailHeader from '../../components/LaunchDetailHeader'
 import LaunchDetail from '../../components/LaunchDetail'
 
-export default function Home({ launch }) {
+export default function Launch({ launch }) {
   const [launchData, setLaunchData] = useContext(LaunchContext)
 
   useEffect(()=>{
